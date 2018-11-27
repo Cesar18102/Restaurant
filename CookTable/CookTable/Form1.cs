@@ -38,17 +38,17 @@ namespace CookTable
                     offeredmeals.Rows.Add();
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["ID"].Value = offers[i].id;
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["SubOfferId"].Value = offers[i].meals[j].id;
-                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["MealId"].Value = offers[i].meals[j].mealId;
+                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["MealId"].Value = offers[i].meals[j].menu_id;
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["MealName"].Value = offers[i].meals[j].name;
-                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["MealCount"].Value = offers[i].meals[j].count;
+                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["MealCount"].Value = offers[i].meals[j].amount;
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["MealWeight"].Value = offers[i].meals[j].weight;
-                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["Start"].Value = offers[i].start;
-                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["TimeSpent"].Value = Convert.ToInt32((DateTime.Now - offers[i].start).TotalMinutes);
+                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["Start"].Value = offers[i].date;
+                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["TimeSpent"].Value = Convert.ToInt32((DateTime.Now - offers[i].date).TotalMinutes);
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["Comment"].Value = offers[i].comment;
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["Reciepe"].Value = "Перейти к рецепту";
 
-                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["CookStart"].Value = offers[i].meals[j].state_id >= 1;
-                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["State"].Value = offers[i].meals[j].state_id >= 2;
+                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["CookStart"].Value = offers[i].meals[j].state_id >= 2;
+                    offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["State"].Value = offers[i].meals[j].state_id >= 3;
 
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["OfferIdHidden"].Value = i;
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["OfferedMealIdHidden"].Value = j;
@@ -58,7 +58,7 @@ namespace CookTable
 
         public List<Offer> GetOffers(ProgressBar PB) {
 
-            List<Offer> offers = Server.Deserialize<List<Offer>>(Server.PostQuery(Constants.QueryURL, "query=SELECT id, start, comment FROM offer ORDER BY offer.start ASC&pas=Delishes228"));
+            List<Offer> offers = Server.Deserialize<List<Offer>>(Server.PostQuery(Constants.QueryURL, "query=SELECT id, date, comment FROM offer ORDER BY offer.date ASC&pas=Delishes228"));
 
             int delta = 100 / (offers.Count + 3);
             PB.Value += delta;
@@ -84,14 +84,14 @@ namespace CookTable
                 case 10:
                     if (Convert.ToBoolean(offeredmeals.Rows[e.RowIndex].Cells[10].EditedFormattedValue)) {
 
-                        if (Server.Deserialize<List<Count>>(Server.PostQuery(Constants.QueryURL, "query=SELECT COUNT(id) FROM offeredmeals WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 0&pas=Delishes228").Replace("COUNT(id)", "count"))[0].count == 0) {
+                        if (Server.Deserialize<List<Count>>(Server.PostQuery(Constants.QueryURL, "query=SELECT COUNT(id) FROM offered_meal WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 1&pas=Delishes228").Replace("COUNT(id)", "count"))[0].count == 0) {
 
                             offeredmeals.Rows[e.RowIndex].Cells["CookStart"].Value = false;
                             MessageBox.Show("Уже готовится!!! Заказ не принят!!!");
                         }
                         else {
 
-                            Server.PostQuery(Constants.QueryURL, "query=UPDATE offeredmeals SET state_id = 1 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 0&pas=Delishes228");
+                            Server.PostQuery(Constants.QueryURL, "query=UPDATE offered_meal SET state_id = 2 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 1&pas=Delishes228");
                             MessageBox.Show("Заказ принят!!!");
                         }
                     }
@@ -101,7 +101,7 @@ namespace CookTable
                             MessageBox.Show("Невозможно отклонить заказ: уже готово!");
                         else {
 
-                            Server.PostQuery(Constants.QueryURL, "query=UPDATE offeredmeals SET state_id = 0 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 1&pas=Delishes228");
+                            Server.PostQuery(Constants.QueryURL, "query=UPDATE offered_meal SET state_id = 1 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 2&pas=Delishes228");
                             MessageBox.Show("Вы отклонили заказ!!!");
                         }
                     }
@@ -110,20 +110,21 @@ namespace CookTable
                 case 11:
                     if (Convert.ToBoolean(offeredmeals.Rows[e.RowIndex].Cells[11].EditedFormattedValue)) {
 
-                        if (Server.Deserialize<List<Count>>(Server.PostQuery(Constants.QueryURL, "query=SELECT COUNT(id) FROM offeredmeals WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 1&pas=Delishes228").Replace("COUNT(id)", "count"))[0].count == 0) {
+                        if (Server.Deserialize<List<Count>>(Server.PostQuery(Constants.QueryURL, "query=SELECT COUNT(id) FROM offered_meal WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 2&pas=Delishes228").Replace("COUNT(id)", "count"))[0].count == 0)
+                        {
 
                             offeredmeals.Rows[e.RowIndex].Cells["State"].Value = false;
                             MessageBox.Show("Вы не приняли заказ!!!");
                         }
                         else {
 
-                            Server.PostQuery(Constants.QueryURL, "query=UPDATE offeredmeals SET state_id = 2 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 1&pas=Delishes228");
-                            MessageBox.Show("ОК!!!");
+                            Server.PostQuery(Constants.QueryURL, "query=UPDATE offered_meal SET state_id = 3 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 2&pas=Delishes228");
+                            MessageBox.Show("Хорошая работа!!!");
                         }
                     }
                     else {
 
-                        Server.PostQuery(Constants.QueryURL, "query=UPDATE offeredmeals SET state_id = 1 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 2&pas=Delishes228");
+                        Server.PostQuery(Constants.QueryURL, "query=UPDATE offered_meal SET state_id = 2 WHERE id = " + offeredmeals.Rows[e.RowIndex].Cells["SubOfferId"].Value + " AND state_id = 3&pas=Delishes228");
                         MessageBox.Show("Вы отменили готовность заказа!!!");
                     }
                     break;
@@ -132,10 +133,14 @@ namespace CookTable
 
         public void LoadReciepe(Meal meal) {
 
-            string message = "";
-            foreach (Product i in meal.products)
-                message += i.name + " " + i.count / meal.count + " " + i.unit + "\n";
-            MessageBox.Show(message + "X " + meal.count);
+            string message = meal.reciepe;
+            foreach (Product i in meal.products) {
+
+                message = message.Substring(0, message.IndexOf("%a")) + (Convert.ToDouble(i.amount) / meal.amount).ToString() + message.Substring(message.IndexOf("%a") + 2);
+                message = message.Substring(0, message.IndexOf("%u")) + i.unit + message.Substring(message.IndexOf("%u") + 2);
+                message = message.Substring(0, message.IndexOf("%p")) + i.name + message.Substring(message.IndexOf("%p") + 2);
+            }
+            MessageBox.Show(message + ".\n В количестве " + meal.amount + " порций.", "Рецепт", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void UpdateTimer_Tick(object sender, EventArgs e) {

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Drivers.Registration">
+    <ScrollView>
+        <StackLayout>
+            <Picker Title="Еще действия" x:Name="Actions" HorizontalOptions="FillAndExpand" Margin="20,20,20,20"></Picker>
+            <Grid Margin="20,20,20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="26*" />
+                    <ColumnDefinition Width="70*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+
+                <Label Text="*" Grid.Row="0" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Фамилия: " Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Grid.Row="0" Grid.Column="2" Placeholder="Иванов" x:Name="SrNm"></Entry>
+
+                <Label Text="*" Grid.Row="1" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Имя: " Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Grid.Row="1" Grid.Column="2" Placeholder="Иван" x:Name="Nm"></Entry>
+
+                <Label Text="" Grid.Row="2" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Отчество: " Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Grid.Row="2" Grid.Column="2" Placeholder="Иванович" x:Name="FthrNm"></Entry>
+
+                <Label Text="*" Grid.Row="3" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Дата рождения: " Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <DatePicker Grid.Row="3" Grid.Column="2" x:Name="BrthDt"  />
+
+                <Label Text="*" Grid.Row="4" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Номер паспорта: " Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Placeholder="123456" Grid.Row="4" Grid.Column="2" x:Name="PID"></Entry>
+
+                <Label Text="" Grid.Row="5" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Серия паспорта: " Grid.Row="5" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Placeholder="МТ" Grid.Row="5" Grid.Column="2" x:Name="PS"></Entry>
+
+                <Label Text="*" Grid.Row="6" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Номер машины: " Grid.Row="6" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Placeholder="AX1562XA" Grid.Row="6" Grid.Column="2" x:Name="CID"></Entry>
+
+                <Label Text="*" Grid.Row="7" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Марка машины: " Grid.Row="7" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Placeholder="Ford" Grid.Row="7" Grid.Column="2" x:Name="CM"></Entry>
+
+                <Label Text="*" Grid.Row="8" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="e-mail: " Grid.Row="8" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Placeholder="example.ex@gmail.com" Grid.Row="8" Grid.Column="2" x:Name="Mail"></Entry>
+
+                <Label Text="*" Grid.Row="9" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Пароль: " Grid.Row="9" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Grid.Row="9" Grid.Column="2" x:Name="Pass" IsPassword="True"></Entry>
+
+                <Label Text="*" Grid.Row="10" Grid.Column="0" TextColor="Red" VerticalTextAlignment="Start"></Label>
+                <Label Text="Повторите пароль: " Grid.Row="10" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+                <Entry Grid.Row="10" Grid.Column="2" x:Name="PassCheck" IsPassword="True"></Entry>
+            </Grid>
+            <Button x:Name="Confirm" Text="Зарегистрироваться"></Button>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

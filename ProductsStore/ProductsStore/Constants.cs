@@ -8,6 +8,6 @@ namespace ProductsStore {
 
     public static class Constants {
 
-        public static string QueryURL = "http://localhost/deliciousdishes/php/query.php";
+        public static string QueryURL = "http://localhost/deliciousdishes/site/php/query.php";
     }
 }

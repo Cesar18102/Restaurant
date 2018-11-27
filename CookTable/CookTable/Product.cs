@@ -10,7 +10,7 @@ namespace CookTable {
 
         public int id;
         public string name;
-        public int count;
+        public double amount;
         public string unit;
     }
 }

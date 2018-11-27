@@ -9,12 +9,12 @@ namespace ProductsStore
     public class StoreProduct {
 
         public int id;
-        public int productId;
+        public int product_id;
         public string name;
         public string unit;
-        public DateTime shelfStart;
+        public DateTime made_date;
         public double amount;
-        public double price;
+        public double discrete_price;
 
         public StoreProduct() { }
     }

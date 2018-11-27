@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Drivers.Offers">
+    <ScrollView>
+        <StackLayout x:Name="layout">
+            <Picker Title="Еще действия" x:Name="Actions" HorizontalOptions="FillAndExpand" Margin="20,20,20,20"></Picker>
+            <Label x:Name="userInfo" Margin="20, 20, 20, 20"></Label>
+            <TableView>
+                <TableRoot x:Name="offers">
+                    
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

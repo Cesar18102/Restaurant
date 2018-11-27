@@ -8,6 +8,6 @@ namespace CookTable {
 
     public static class Constants {
 
-        public static string QueryURL = "http://178.151.184.183/deliciousdishes/php/query.php";
+        public static string QueryURL = "http://deliciousdishes.zzz.com.ua/php/query.php";
     }
 }

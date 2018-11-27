@@ -11,6 +11,7 @@ using System.Net;
 using System.Web;
 using System.IO;
 using System.Web.Script.Serialization;
+using MySql.Data.MySqlClient;
 
 namespace ProductsStore
 {
@@ -22,6 +23,7 @@ namespace ProductsStore
         }
 
         JavaScriptSerializer serializer = new JavaScriptSerializer();
+        MySqlConnection MSC;
 
         private void Storage_Load(object sender, EventArgs e) {
 
@@ -43,11 +45,14 @@ namespace ProductsStore
                 StoreProductName.SelectedIndex = 0;
         }
 
-        public void InsertProduct(string name, int categoryId, int unitId, int shelfLife) {
+        public void InsertProduct(string name, int shelfLife) {
 
             int id = serializer.Deserialize<List<MaxId>>(PostQuery(Constants.QueryURL, "query=SELECT MAX(id) FROM product&pas=Delishes228").Replace("MAX(id)", "id"))[0].id + 1;
+            
+            int CategId = serializer.Deserialize<List<MaxId>>(PostQuery(Constants.QueryURL, "query=SELECT id FROM category WHERE name = '" + CategoryInput.Items[CategoryInput.SelectedIndex].ToString() + "'&pas=Delishes228"))[0].id;
+            int UnitId = serializer.Deserialize<List<MaxId>>(PostQuery(Constants.QueryURL, "query=SELECT id FROM unit WHERE name = '" + UnitInput.Items[UnitInput.SelectedIndex].ToString() + "'&pas=Delishes228"))[0].id;
 
-            string values = "'" + id.ToString() + "','" + name + "','" + UnitInput.Items[unitId].ToString() + "','" + CategoryInput.Items[categoryId].ToString() + "','" + shelfLife.ToString() + "'";
+            string values = "'" + id.ToString() + "','" + name + "','" + CategId + "','" + UnitId + "','" + shelfLife.ToString() + "'";
 
             string response = PostQuery(Constants.QueryURL, "query=INSERT INTO product VALUES(" + values + ")&pas=Delishes228");
 
@@ -56,12 +61,12 @@ namespace ProductsStore
 
         public void InsertStoredProduct(string name, double count, double price, DateTime start) {
 
-            int id = serializer.Deserialize<List<MaxId>>(PostQuery(Constants.QueryURL, "query=SELECT MAX(id) FROM storage&pas=Delishes228").Replace("MAX(id)", "id"))[0].id + 1;
+            int id = serializer.Deserialize<List<MaxId>>(PostQuery(Constants.QueryURL, "query=SELECT MAX(id) FROM storage_product&pas=Delishes228").Replace("MAX(id)", "id"))[0].id + 1;
             int productId = serializer.Deserialize<List<MaxId>>(PostQuery(Constants.QueryURL, "query=SELECT id FROM product WHERE name = '" + name + "'&pas=Delishes228"))[0].id;
 
             string values = "'" + id.ToString() + "','" + productId.ToString() + "','" + start.Year + "-" + start.Month + "-" + start.Day + "','" + count.ToString() + "','" + price.ToString() + "'";
 
-            string response = PostQuery(Constants.QueryURL, "query=INSERT INTO storage VALUES(" + values + ")&pas=Delishes228");
+            string response = PostQuery(Constants.QueryURL, "query=INSERT INTO storage_product VALUES(" + values + ")&pas=Delishes228");
 
             UpdateStoreList();
             UpdateOldProducts();
@@ -79,7 +84,7 @@ namespace ProductsStore
 
         public void LoadProducts() {
 
-            string response = PostQuery(Constants.QueryURL, "query=SELECT name FROM catigories&pas=Delishes228");
+            string response = PostQuery(Constants.QueryURL, "query=SELECT name FROM category&pas=Delishes228");
 
             List<Category> categories = serializer.Deserialize<List<Category>>(response);
 
@@ -89,7 +94,7 @@ namespace ProductsStore
 
         public void LoadUnits() {
 
-            string response = PostQuery(Constants.QueryURL, "query=SELECT name FROM units&pas=Delishes228");
+            string response = PostQuery(Constants.QueryURL, "query=SELECT name FROM unit&pas=Delishes228");
 
             List<Category> units = serializer.Deserialize<List<Category>>(response);
 
@@ -101,7 +106,7 @@ namespace ProductsStore
 
             productsList.Rows.Clear();
 
-            string response = PostQuery(Constants.QueryURL, "query=SELECT id, name, unit, category, shelfLife FROM product&pas=Delishes228");
+            string response = PostQuery(Constants.QueryURL, "query=SELECT P.id, P.name, U.name AS unit, C.name AS category, P.shelf_life FROM product P, unit U, category C WHERE U.id = P.unit_id AND C.id = P.category_id ORDER BY P.id ASC&pas=Delishes228");
 
             List<Product> products = serializer.Deserialize<List<Product>>(response);
 
@@ -113,7 +118,7 @@ namespace ProductsStore
                     productsList.Rows[productsList.RowCount - 1].Cells[1].Value = i.name;
                     productsList.Rows[productsList.RowCount - 1].Cells[2].Value = i.category;
                     productsList.Rows[productsList.RowCount - 1].Cells[3].Value = i.unit;
-                    productsList.Rows[productsList.RowCount - 1].Cells[4].Value = i.shelfLife;
+                    productsList.Rows[productsList.RowCount - 1].Cells[4].Value = i.shelf_life;
                 }
         }
 
@@ -122,7 +127,7 @@ namespace ProductsStore
             storeList.Rows.Clear();
 
             string response = PostQuery(Constants.QueryURL,
-                                        "query=SELECT storage.id, product.id AS productId, product.name, product.unit, storage.shelfStart, storage.amount, storage.price FROM product, storage WHERE product.id = storage.productId&pas=Delishes228");
+                                        "query=SELECT S.id, P.id AS product_id, P.name, (SELECT U.name FROM unit U WHERE U.id = P.unit_id) AS unit, S.made_date, S.amount, S.discrete_price FROM product P, storage_product S WHERE P.id = S.product_id&pas=Delishes228");
 
             List<StoreProduct> stores = serializer.Deserialize<List<StoreProduct>>(response);
 
@@ -134,8 +139,8 @@ namespace ProductsStore
                     storeList.Rows[storeList.RowCount - 1].Cells[1].Value = i.name;
                     storeList.Rows[storeList.RowCount - 1].Cells[2].Value = i.amount;
                     storeList.Rows[storeList.RowCount - 1].Cells[3].Value = i.unit;
-                    storeList.Rows[storeList.RowCount - 1].Cells[4].Value = i.price;
-                    storeList.Rows[storeList.RowCount - 1].Cells[5].Value = i.shelfStart.ToShortDateString();
+                    storeList.Rows[storeList.RowCount - 1].Cells[4].Value = i.discrete_price;
+                    storeList.Rows[storeList.RowCount - 1].Cells[5].Value = i.made_date.ToShortDateString();
                 }
         }
 
@@ -205,7 +210,7 @@ namespace ProductsStore
         private void SubmitProduct_Click(object sender, EventArgs e) {
 
             if(ProductNameInput.Text != "" && CategoryInput.SelectedIndex != -1 && UnitInput.SelectedIndex != -1 && ShelfLifeInput.Value > 0)
-                InsertProduct(ProductNameInput.Text, CategoryInput.SelectedIndex, UnitInput.SelectedIndex, Convert.ToInt32(ShelfLifeInput.Value));
+                InsertProduct(ProductNameInput.Text, Convert.ToInt32(ShelfLifeInput.Value));
 
             LoadStoredProducts();
         }
@@ -219,7 +224,7 @@ namespace ProductsStore
         private void RemoveOldProducts_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < oldProductsList.RowCount; i++)
-                PostQuery(Constants.QueryURL, "query=DELETE FROM storage WHERE id = " + oldProductsList.Rows[i].Cells["oldProductID"].Value + ";&pas=Delishes228");
+                PostQuery(Constants.QueryURL, "query=DELETE FROM storage_product WHERE id = " + oldProductsList.Rows[i].Cells["oldProductID"].Value + ";&pas=Delishes228");
 
             UpdateStoreList();
             UpdateOldProducts();

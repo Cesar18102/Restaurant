@@ -12,7 +12,7 @@ namespace ProductsStore
         public string name;
         public string category;
         public string unit;
-        public int shelfLife;
+        public int shelf_life;
 
         public Product() { }
     }
