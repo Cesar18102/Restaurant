@@ -55,7 +55,7 @@ namespace Reports
                                     case 5: return ML.unit; break;
                                     default: return ""; break;
                                 }
-                            }, M);
+                            }, M, "Отчет по блюдам");
         }
 
         private void ProductReport_Click(object sender, EventArgs e)
@@ -80,10 +80,10 @@ namespace Reports
                                     case 5: return S.unit; break;
                                     default: return ""; break;
                                 }
-                            }, SP);
+                            }, SP, "Отчет по продуктам на складе");
         }
 
-        private void PrintWord<Q>(List<string> headers, ValueAt<Q> V, List<Q> Values) {
+        private void PrintWord<Q>(List<string> headers, ValueAt<Q> V, List<Q> Values, string head) {
 
             this.UseWaitCursor = true;
             FileStream FS = File.Create(Environment.CurrentDirectory + "/Print.doc");
@@ -96,21 +96,26 @@ namespace Reports
             Document.PageSetup.Orientation = Word.WdOrientation.wdOrientLandscape;
             R = Document.Sections[1].Range;
 
-            T = Document.Tables.Add(R, Values.Count + 1, 6, missingObj, missingObj);
+            T = Document.Tables.Add(R, Values.Count + 2, headers.Count, missingObj, missingObj);
             T.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
             T.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
 
-            for (int i = 1; i <= 6; i++) {
+            T.Rows[1].Cells.Merge();
+            T.Rows[1].Cells[1].Width = 500;
+            T.Rows[1].Cells[1].Range.Text = head;
 
-                T.Rows[1].Cells[i].Width = 500 / headers.Count;
-                T.Rows[1].Cells[i].Range.Text = headers[i - 1];
+            for (int i = 1; i <= headers.Count; i++)
+            {
+
+                T.Rows[2].Cells[i].Width = 500 / headers.Count;
+                T.Rows[2].Cells[i].Range.Text = headers[i - 1];
             }
 
             for (int i = 0; i < Values.Count; i++)
                 for (int j = 0; j < headers.Count; j++)
                 {
-                    T.Rows[i + 2].Cells[j + 1].Width = 500 / headers.Count;
-                    T.Rows[i + 2].Cells[j + 1].Range.Text = V(Values[i], j);
+                    T.Rows[i + 3].Cells[j + 1].Width = 500 / headers.Count;
+                    T.Rows[i + 3].Cells[j + 1].Range.Text = V(Values[i], j);
                 }
 
             Document.Save();
