@@ -140,7 +140,10 @@ namespace CookTable
                 message = message.Substring(0, message.IndexOf("%u")) + i.unit + message.Substring(message.IndexOf("%u") + 2);
                 message = message.Substring(0, message.IndexOf("%p")) + i.name + message.Substring(message.IndexOf("%p") + 2);
             }
-            MessageBox.Show(message + ".\n В количестве " + meal.amount + " порций.", "Рецепт", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            Reciepe R = new Reciepe("РЕЦЕПТ: \n" + message + ".\n В количестве " + meal.amount + " порций.");
+            R.ShowDialog();
+
         }
 
         private void UpdateTimer_Tick(object sender, EventArgs e) {

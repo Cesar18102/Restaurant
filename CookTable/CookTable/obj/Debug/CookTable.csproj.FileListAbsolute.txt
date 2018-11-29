@@ -7,3 +7,4 @@ c:\users\olehk\documents\visual studio 2012\Projects\CookTable\CookTable\obj\Deb
 c:\users\olehk\documents\visual studio 2012\Projects\CookTable\CookTable\obj\Debug\CookTable.csproj.GenerateResource.Cache
 c:\users\olehk\documents\visual studio 2012\Projects\CookTable\CookTable\obj\Debug\CookTable.exe
 c:\users\olehk\documents\visual studio 2012\Projects\CookTable\CookTable\obj\Debug\CookTable.pdb
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\CookTable\CookTable\obj\Debug\CookTable.Reciepe.resources

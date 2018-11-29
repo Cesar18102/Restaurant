@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.offeredmeals = new System.Windows.Forms.DataGridView();
-            this.UpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.UpdateProgress = new System.Windows.Forms.ProgressBar();
-            this.UpdateBarLabel = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubOfferID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MealId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +44,9 @@
             this.State = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OfferIdHidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OfferedMealIdHidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UpdateTimer = new System.Windows.Forms.Timer(this.components);
+            this.UpdateProgress = new System.Windows.Forms.ProgressBar();
+            this.UpdateBarLabel = new System.Windows.Forms.Label();
             this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.TimeLabel = new System.Windows.Forms.Label();
             this.ForceUpdate = new System.Windows.Forms.Button();
@@ -83,30 +83,6 @@
             this.offeredmeals.Size = new System.Drawing.Size(1400, 670);
             this.offeredmeals.TabIndex = 0;
             this.offeredmeals.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.offeredmeals_CellContentClick);
-            // 
-            // UpdateTimer
-            // 
-            this.UpdateTimer.Interval = 60000;
-            this.UpdateTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
-            // 
-            // UpdateProgress
-            // 
-            this.UpdateProgress.Location = new System.Drawing.Point(169, 686);
-            this.UpdateProgress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.UpdateProgress.Name = "UpdateProgress";
-            this.UpdateProgress.Size = new System.Drawing.Size(770, 68);
-            this.UpdateProgress.TabIndex = 1;
-            // 
-            // UpdateBarLabel
-            // 
-            this.UpdateBarLabel.AutoSize = true;
-            this.UpdateBarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UpdateBarLabel.Location = new System.Drawing.Point(13, 707);
-            this.UpdateBarLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.UpdateBarLabel.Name = "UpdateBarLabel";
-            this.UpdateBarLabel.Size = new System.Drawing.Size(148, 24);
-            this.UpdateBarLabel.TabIndex = 2;
-            this.UpdateBarLabel.Text = "До обновления";
             // 
             // ID
             // 
@@ -208,6 +184,30 @@
             this.OfferedMealIdHidden.ReadOnly = true;
             this.OfferedMealIdHidden.Visible = false;
             // 
+            // UpdateTimer
+            // 
+            this.UpdateTimer.Interval = 60000;
+            this.UpdateTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
+            // 
+            // UpdateProgress
+            // 
+            this.UpdateProgress.Location = new System.Drawing.Point(169, 686);
+            this.UpdateProgress.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdateProgress.Name = "UpdateProgress";
+            this.UpdateProgress.Size = new System.Drawing.Size(770, 68);
+            this.UpdateProgress.TabIndex = 1;
+            // 
+            // UpdateBarLabel
+            // 
+            this.UpdateBarLabel.AutoSize = true;
+            this.UpdateBarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UpdateBarLabel.Location = new System.Drawing.Point(13, 707);
+            this.UpdateBarLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateBarLabel.Name = "UpdateBarLabel";
+            this.UpdateBarLabel.Size = new System.Drawing.Size(148, 24);
+            this.UpdateBarLabel.TabIndex = 2;
+            this.UpdateBarLabel.Text = "До обновления";
+            // 
             // ProgressTimer
             // 
             this.ProgressTimer.Interval = 1000;
@@ -247,8 +247,9 @@
             this.Controls.Add(this.UpdateProgress);
             this.Controls.Add(this.offeredmeals);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Cooker";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CookTable";
             this.Load += new System.EventHandler(this.Cooker_Load);
             ((System.ComponentModel.ISupportInitialize)(this.offeredmeals)).EndInit();
