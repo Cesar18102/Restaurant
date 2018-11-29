@@ -1,0 +1,11 @@
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\bin\Debug\Reports.exe.config
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\bin\Debug\Reports.exe
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\bin\Debug\Reports.pdb
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\bin\Debug\Microsoft.Office.Tools.Word.v4.0.Utilities.dll
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\bin\Debug\Microsoft.Office.Tools.Word.v4.0.Utilities.xml
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\obj\Debug\Reports.csprojResolveAssemblyReference.cache
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\obj\Debug\Reports.Form1.resources
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\obj\Debug\Reports.Properties.Resources.resources
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\obj\Debug\Reports.csproj.GenerateResource.Cache
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\obj\Debug\Reports.exe
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\Reports\Reports\obj\Debug\Reports.pdb
