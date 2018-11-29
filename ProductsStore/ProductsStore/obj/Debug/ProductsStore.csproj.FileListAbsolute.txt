@@ -7,3 +7,15 @@ c:\users\olehk\documents\visual studio 2012\Projects\ProductsStore\ProductsStore
 c:\users\olehk\documents\visual studio 2012\Projects\ProductsStore\ProductsStore\bin\Debug\ProductsStore.pdb
 c:\users\olehk\documents\visual studio 2012\Projects\ProductsStore\ProductsStore\obj\Debug\ProductsStore.exe
 c:\users\olehk\documents\visual studio 2012\Projects\ProductsStore\ProductsStore\obj\Debug\ProductsStore.pdb
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\bin\Debug\ProductsStore.exe.config
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.exe
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.pdb
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\bin\Debug\ProductsStore.exe
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\bin\Debug\ProductsStore.pdb
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.csprojResolveAssemblyReference.cache
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.Storage.resources
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.Properties.Resources.resources
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.csproj.GenerateResource.Cache
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.AddProductForm.resources
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.AddProductNameForm.resources
+C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.DropExpiredForm.resources
