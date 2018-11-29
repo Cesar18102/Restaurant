@@ -21,12 +21,14 @@ namespace Reports
         private Word.Document Document;
         private Word.Range R;
         private Word.Table T;
+        private Word.Paragraph P;
         private Object missingObj = System.Reflection.Missing.Value;
         private Object trueObj = true;
         private Object falseObj = false;
 
         private List<StoreProduct> SP = new List<StoreProduct>();
         private List<Meal> M = new List<Meal>();
+        private List<Driver> D = new List<Driver>();
 
         public delegate string ValueAt<Q>(Q SP, int i);
 
@@ -83,6 +85,27 @@ namespace Reports
                             }, SP, "Отчет по продуктам на складе");
         }
 
+        private void DriverReport_Click(object sender, EventArgs e)
+        {
+            D = Server.Deserialize<Driver>(Server.PostQuery(Constants.QueryURL, "query=SELECT * FROM driver&pas=Delishes228"));
+
+            PrintWord<Driver>(new List<string>() { "id", "Полное имя", "Дата рождения", "Паспорт", "Машина", "e-mail" },
+                            (DR, i) =>
+                            {
+                                Driver DRV = DR as Driver;
+                                switch (i) {
+
+                                    case 0: return DRV.id.ToString(); break;
+                                    case 1: return DRV.surname + " " + DRV.name + " " + DRV.fathername; break;
+                                    case 2: return DRV.birth.Date.ToShortDateString(); break;
+                                    case 3: return (DRV.passport_seria == null ? "" : DRV.passport_seria) + DRV.passport_id; break;
+                                    case 4: return DRV.car_model + ", " + DRV.car_id; break;
+                                    case 5: return DRV.mail; break;
+                                    default: return ""; break;
+                                }
+                            }, D, "Отчет по водителям доставки");
+        }
+
         private void PrintWord<Q>(List<string> headers, ValueAt<Q> V, List<Q> Values, string head) {
 
             this.UseWaitCursor = true;
@@ -101,21 +124,29 @@ namespace Reports
             T.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
 
             T.Rows[1].Cells.Merge();
-            T.Rows[1].Cells[1].Width = 500;
+            T.Rows[1].Cells[1].Width = 698;
             T.Rows[1].Cells[1].Range.Text = head;
+            T.Rows[1].Cells[1].Range.Font.Size = 18;
+            T.Rows[1].Cells[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            T.Rows[1].Cells[1].Range.Borders.Enable = 0;
 
-            for (int i = 1; i <= headers.Count; i++)
-            {
+            for (int i = 1; i <= headers.Count; i++) {
 
-                T.Rows[2].Cells[i].Width = 500 / headers.Count;
+                T.Rows[2].Cells[i].Width = 700 / headers.Count;
                 T.Rows[2].Cells[i].Range.Text = headers[i - 1];
+
+                T.Rows[2].Cells[i].Range.Font.Size = 14;
+                T.Rows[2].Cells[i].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
             }
 
             for (int i = 0; i < Values.Count; i++)
                 for (int j = 0; j < headers.Count; j++)
                 {
-                    T.Rows[i + 3].Cells[j + 1].Width = 500 / headers.Count;
+                    T.Rows[i + 3].Cells[j + 1].Width = 700 / headers.Count;
                     T.Rows[i + 3].Cells[j + 1].Range.Text = V(Values[i], j);
+
+                    if (i % 2 == 0)
+                        T.Rows[i + 3].Cells[j + 1].Shading.BackgroundPatternColor = Word.WdColor.wdColorGray20;
                 }
 
             Document.Save();

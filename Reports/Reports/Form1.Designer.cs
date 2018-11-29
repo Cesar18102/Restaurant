@@ -30,6 +30,7 @@
         {
             this.MealReport = new System.Windows.Forms.Button();
             this.ProductReport = new System.Windows.Forms.Button();
+            this.DriverReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MealReport
@@ -52,11 +53,22 @@
             this.ProductReport.UseVisualStyleBackColor = true;
             this.ProductReport.Click += new System.EventHandler(this.ProductReport_Click);
             // 
+            // DriverReport
+            // 
+            this.DriverReport.Location = new System.Drawing.Point(13, 107);
+            this.DriverReport.Name = "DriverReport";
+            this.DriverReport.Size = new System.Drawing.Size(409, 41);
+            this.DriverReport.TabIndex = 2;
+            this.DriverReport.Text = "Отчет по водителям";
+            this.DriverReport.UseVisualStyleBackColor = true;
+            this.DriverReport.Click += new System.EventHandler(this.DriverReport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 114);
+            this.ClientSize = new System.Drawing.Size(443, 163);
+            this.Controls.Add(this.DriverReport);
             this.Controls.Add(this.ProductReport);
             this.Controls.Add(this.MealReport);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -72,6 +84,7 @@
 
         private System.Windows.Forms.Button MealReport;
         private System.Windows.Forms.Button ProductReport;
+        private System.Windows.Forms.Button DriverReport;
     }
 }
 

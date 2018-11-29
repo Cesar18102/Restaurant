@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Driver.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
