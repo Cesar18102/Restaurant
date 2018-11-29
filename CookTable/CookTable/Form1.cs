@@ -19,6 +19,10 @@ namespace CookTable
 
         private List<Offer> offers;
 
+        private List<Predicate<DataGridViewRow>> filter = new List<Predicate<DataGridViewRow>>();
+        private List<int> OfferIDS = new List<int>();
+        private List<int> MealIDS = new List<int>();
+
         private void Cooker_Load(object sender, EventArgs e) {
 
             UpdateOffers(UpdateProgress);
@@ -34,6 +38,9 @@ namespace CookTable
 
             for (int i = 0; i < offers.Count; i++)
                 for (int j = 0; j < offers[i].meals.Count; j++) {
+
+                    OfferIDS.Add(offers[i].id);
+                    MealIDS.Add(offers[i].meals[j].id);
 
                     offeredmeals.Rows.Add();
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["ID"].Value = offers[i].id;
@@ -52,8 +59,21 @@ namespace CookTable
 
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["OfferIdHidden"].Value = i;
                     offeredmeals.Rows[offeredmeals.RowCount - 1].Cells["OfferedMealIdHidden"].Value = j;
+
+                    foreach(Predicate<DataGridViewRow> dgwr in filter)
+                        if (!dgwr(offeredmeals.Rows[offeredmeals.RowCount - 1]))
+                        {
+                            offeredmeals.Rows.RemoveAt(offeredmeals.RowCount - 1);
+                            break;
+                        }
                 }
             PB.Value = 100;
+
+            OfferIDVAL.Minimum = OfferIDS.Min();
+            OfferIDVAL.Maximum = OfferIDS.Max();
+
+            MealIDVAL.Minimum = MealIDS.Min();
+            MealIDVAL.Maximum = MealIDS.Max();
         }
 
         public List<Offer> GetOffers(ProgressBar PB) {
@@ -176,6 +196,25 @@ namespace CookTable
             TimeLabel.Visible = true;
             TimeLabel.Text = "60";
             ProgressTimer.Start();
+        }
+
+        private void Filter_CheckedChanged(object sender, EventArgs e)
+        {
+            filter.Clear();
+
+            if (OfferIDCB.Checked && OfferIDS.Contains(Convert.ToInt32(OfferIDVAL.Value)))
+                filter.Add(R => Convert.ToInt32(R.Cells["ID"].Value) == Convert.ToInt32(OfferIDVAL.Value));
+
+            if (MealIDCB.Checked && MealIDS.Contains(Convert.ToInt32(MealIDVAL.Value)))
+                filter.Add(R => Convert.ToInt32(R.Cells["MealId"].Value) == Convert.ToInt32(MealIDVAL.Value));
+
+            if (AcceptedCB.Checked)
+                filter.Add(R => Convert.ToBoolean(R.Cells["CookStart"].Value));
+
+            if (ReadyCB.Checked)
+                filter.Add(R => Convert.ToBoolean(R.Cells["State"].Value));
+
+            UpdateOffers(UpdateProgress);
         }
     }
 }

@@ -50,7 +50,16 @@
             this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.TimeLabel = new System.Windows.Forms.Label();
             this.ForceUpdate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.OfferIDCB = new System.Windows.Forms.CheckBox();
+            this.AcceptedCB = new System.Windows.Forms.CheckBox();
+            this.MealIDCB = new System.Windows.Forms.CheckBox();
+            this.ReadyCB = new System.Windows.Forms.CheckBox();
+            this.OfferIDVAL = new System.Windows.Forms.NumericUpDown();
+            this.MealIDVAL = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.offeredmeals)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OfferIDVAL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MealIDVAL)).BeginInit();
             this.SuspendLayout();
             // 
             // offeredmeals
@@ -80,7 +89,7 @@
             this.offeredmeals.Name = "offeredmeals";
             this.offeredmeals.RowHeadersVisible = false;
             this.offeredmeals.RowTemplate.Height = 40;
-            this.offeredmeals.Size = new System.Drawing.Size(1400, 670);
+            this.offeredmeals.Size = new System.Drawing.Size(1400, 649);
             this.offeredmeals.TabIndex = 0;
             this.offeredmeals.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.offeredmeals_CellContentClick);
             // 
@@ -236,11 +245,89 @@
             this.ForceUpdate.UseVisualStyleBackColor = true;
             this.ForceUpdate.Click += new System.EventHandler(this.ForceUpdate_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(620, 758);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 24);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Фильтры";
+            // 
+            // OfferIDCB
+            // 
+            this.OfferIDCB.AutoSize = true;
+            this.OfferIDCB.Location = new System.Drawing.Point(374, 800);
+            this.OfferIDCB.Name = "OfferIDCB";
+            this.OfferIDCB.Size = new System.Drawing.Size(95, 22);
+            this.OfferIDCB.TabIndex = 6;
+            this.OfferIDCB.Text = "ID Заказа";
+            this.OfferIDCB.UseVisualStyleBackColor = true;
+            this.OfferIDCB.CheckedChanged += new System.EventHandler(this.Filter_CheckedChanged);
+            // 
+            // AcceptedCB
+            // 
+            this.AcceptedCB.AutoSize = true;
+            this.AcceptedCB.Location = new System.Drawing.Point(712, 800);
+            this.AcceptedCB.Name = "AcceptedCB";
+            this.AcceptedCB.Size = new System.Drawing.Size(190, 22);
+            this.AcceptedCB.TabIndex = 7;
+            this.AcceptedCB.Text = "Принято к выполнению";
+            this.AcceptedCB.UseVisualStyleBackColor = true;
+            this.AcceptedCB.CheckedChanged += new System.EventHandler(this.Filter_CheckedChanged);
+            // 
+            // MealIDCB
+            // 
+            this.MealIDCB.AutoSize = true;
+            this.MealIDCB.Location = new System.Drawing.Point(374, 830);
+            this.MealIDCB.Name = "MealIDCB";
+            this.MealIDCB.Size = new System.Drawing.Size(92, 22);
+            this.MealIDCB.TabIndex = 8;
+            this.MealIDCB.Text = "ID Блюда";
+            this.MealIDCB.UseVisualStyleBackColor = true;
+            this.MealIDCB.CheckedChanged += new System.EventHandler(this.Filter_CheckedChanged);
+            // 
+            // ReadyCB
+            // 
+            this.ReadyCB.AutoSize = true;
+            this.ReadyCB.Location = new System.Drawing.Point(712, 830);
+            this.ReadyCB.Name = "ReadyCB";
+            this.ReadyCB.Size = new System.Drawing.Size(78, 22);
+            this.ReadyCB.TabIndex = 9;
+            this.ReadyCB.Text = "Готово";
+            this.ReadyCB.UseVisualStyleBackColor = true;
+            this.ReadyCB.CheckedChanged += new System.EventHandler(this.Filter_CheckedChanged);
+            // 
+            // OfferIDVAL
+            // 
+            this.OfferIDVAL.Location = new System.Drawing.Point(475, 799);
+            this.OfferIDVAL.Name = "OfferIDVAL";
+            this.OfferIDVAL.Size = new System.Drawing.Size(171, 24);
+            this.OfferIDVAL.TabIndex = 10;
+            this.OfferIDVAL.ValueChanged += new System.EventHandler(this.Filter_CheckedChanged);
+            // 
+            // MealIDVAL
+            // 
+            this.MealIDVAL.Location = new System.Drawing.Point(475, 829);
+            this.MealIDVAL.Name = "MealIDVAL";
+            this.MealIDVAL.Size = new System.Drawing.Size(171, 24);
+            this.MealIDVAL.TabIndex = 11;
+            this.MealIDVAL.ValueChanged += new System.EventHandler(this.Filter_CheckedChanged);
+            // 
             // Cooker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1423, 767);
+            this.ClientSize = new System.Drawing.Size(1423, 881);
+            this.Controls.Add(this.MealIDVAL);
+            this.Controls.Add(this.OfferIDVAL);
+            this.Controls.Add(this.ReadyCB);
+            this.Controls.Add(this.MealIDCB);
+            this.Controls.Add(this.AcceptedCB);
+            this.Controls.Add(this.OfferIDCB);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ForceUpdate);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.UpdateBarLabel);
@@ -253,6 +340,8 @@
             this.Text = "CookTable";
             this.Load += new System.EventHandler(this.Cooker_Load);
             ((System.ComponentModel.ISupportInitialize)(this.offeredmeals)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OfferIDVAL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MealIDVAL)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,6 +370,13 @@
         private System.Windows.Forms.Timer ProgressTimer;
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.Button ForceUpdate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox OfferIDCB;
+        private System.Windows.Forms.CheckBox AcceptedCB;
+        private System.Windows.Forms.CheckBox MealIDCB;
+        private System.Windows.Forms.CheckBox ReadyCB;
+        private System.Windows.Forms.NumericUpDown OfferIDVAL;
+        private System.Windows.Forms.NumericUpDown MealIDVAL;
     }
 }
 
