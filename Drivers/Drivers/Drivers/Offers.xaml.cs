@@ -26,7 +26,7 @@ namespace Drivers {
             Actions.SelectedIndexChanged += Actions_SelectedIndexChanged;
 
             updateOffers();
-            Device.StartTimer(new TimeSpan(0, 0, 5), updateOffers);
+            Device.StartTimer(new TimeSpan(0, 0, 30), updateOffers);
         }
 
         private void Actions_SelectedIndexChanged(object sender, EventArgs e) {
@@ -118,7 +118,7 @@ namespace Drivers {
                 }
             }
 
-            layout.HeightRequest = OfferCount * 750;
+            layout.HeightRequest = OfferCount * 500;
 
             return true;
         }

@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Drivers"
              x:Class="Drivers.MainPage">
-    <ScrollView>
-        <StackLayout>
-            <Label Text="Пожалуйста, авторизируйтесь" HorizontalOptions="Center" FontSize="Large" Margin="20, 100, 20, 0"></Label>
+    <ScrollView BackgroundColor="#FFAB00">
+        <StackLayout Margin="0,0,0,0">
+            <Image BackgroundColor="#123EAB" HeightRequest="20" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" />
+            <Label Text="Пожалуйста, авторизируйтесь" HorizontalOptions="Center" FontSize="Large" Margin="20, 80, 20, 0"></Label>
             <Grid Margin="20,100,20,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30*" />
@@ -24,7 +25,8 @@
                 <Entry x:Name="Password" Grid.Row="1" Grid.Column="1" IsPassword="True" />
             </Grid>
             <Button x:Name="Login" Text="Войти" Margin="20,0,20,20" />
-            <Picker Title="Еще действия" x:Name="Actions" HorizontalOptions="FillAndExpand" Margin="20,0,20,20"></Picker>
+            <Picker Title="Еще действия" x:Name="Actions" HorizontalOptions="FillAndExpand" Margin="20,0,20,100"></Picker>
+            <Image BackgroundColor="#123EAB" VerticalOptions ="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="20" Margin="0,0,0,0" />
         </StackLayout>
     </ScrollView>
 

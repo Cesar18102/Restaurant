@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Drivers.Question">
-    <ScrollView>
-        <StackLayout Margin="20,20,20,20">
+    <ScrollView BackgroundColor="#FFAB00">
+        <StackLayout Margin="0,0,0,0">
+            <Image BackgroundColor="#123EAB" HeightRequest="20" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" />
             <Picker Title="Еще действия" x:Name="Actions" HorizontalOptions="FillAndExpand" Margin="20,20,20,20"></Picker>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -14,14 +15,15 @@
                     <RowDefinition Height="10*" />
                     <RowDefinition Height="10*" />
                 </Grid.RowDefinitions>
-                
-                <Label Text="e-mail: " Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" />
-                <Entry x:Name="Mail" Placeholder="example.xmpl@gmail.com" Grid.Row="0" Grid.Column="1" />
 
-                <Label Text="Ваш вопрос: " Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" />
-                <Editor x:Name="Quest" Grid.Row="1" Grid.Column="1" />
+                <Label Margin="20,0,20,0" Text="e-mail: " Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Entry Margin="20,0,20,0" x:Name="Mail" Placeholder="example.xmpl@gmail.com" Grid.Row="0" Grid.Column="1" />
+
+                <Label Margin="20,0,20,0" Text="Ваш вопрос: " Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Editor Margin="20,0,20,0" x:Name="Quest" Grid.Row="1" Grid.Column="1" />
             </Grid>
-            <Button x:Name="Confirm" Text="Отправить"></Button>
+            <Button x:Name="Confirm" Text="Отправить" Margin="20,0,20,340"></Button>
+            <Image BackgroundColor="#123EAB" VerticalOptions ="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="20" Margin="0,0,0,0" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

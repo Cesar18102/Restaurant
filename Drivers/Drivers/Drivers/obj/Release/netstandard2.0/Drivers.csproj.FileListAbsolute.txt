@@ -15,3 +15,4 @@ C:\Users\olehk\source\repos\Drivers\Drivers\Drivers\obj\Release\netstandard2.0\X
 C:\Users\olehk\source\repos\Drivers\Drivers\Drivers\obj\Release\netstandard2.0\Drivers.csproj.CopyComplete
 C:\Users\olehk\source\repos\Drivers\Drivers\Drivers\obj\Release\netstandard2.0\Drivers.dll
 C:\Users\olehk\source\repos\Drivers\Drivers\Drivers\obj\Release\netstandard2.0\Drivers.pdb
+C:\Users\olehk\source\repos\Drivers\Drivers\Drivers\obj\Release\netstandard2.0\Drivers.csprojAssemblyReference.cache
