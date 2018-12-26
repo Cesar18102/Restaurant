@@ -17,6 +17,8 @@ namespace ProductsStore
             InitializeComponent();
         }
 
+        private List<Predicate<StoreProduct>> Filter = new List<Predicate<StoreProduct>>();
+
         private void InsertStoredButton_Click(object sender, EventArgs e)
         {
             if (StoreProductName.SelectedIndex != -1 && CountInput.Value > 0 && PrimalPriceInput.Value > 0)
@@ -55,6 +57,8 @@ namespace ProductsStore
             string response = Server.PostQuery(Constants.QueryURL, "query=INSERT INTO storage_product VALUES(" + values + ")&pas=Delishes228");
 
             UpdateStoreList();
+
+            MessageBox.Show("Продукт успешно добавлен на склад!");
         }
 
         public void UpdateStoreList()
@@ -75,6 +79,18 @@ namespace ProductsStore
                 foreach (StoreProduct i in stores)
                 {
 
+                    bool IsInRange = true;
+                    foreach (Predicate<StoreProduct> P in Filter)
+                        if (!P(i))
+                        {
+
+                            IsInRange = false;
+                            break;
+                        }
+
+                    if (!IsInRange)
+                        continue;
+
                     storeList.Rows.Add();
                     storeList.Rows[storeList.RowCount - 1].Cells[0].Value = i.id;
                     storeList.Rows[storeList.RowCount - 1].Cells[1].Value = i.name;
@@ -94,7 +110,34 @@ namespace ProductsStore
                             for (int k = 0; k < storeList.Rows[storeList.RowCount - 1].Cells.Count; k++ )
                                 storeList.Rows[storeList.RowCount - 1].Cells[k].Style.BackColor = Color.Red;
                     }
+
+                    DeleteID.Minimum = Math.Min(DeleteID.Minimum, i.id);
+                    DeleteID.Maximum = Math.Max(DeleteID.Maximum, i.id);
                 }
+        }
+
+        private void Filter_Change(object sender, EventArgs e)
+        {
+            Filter.Clear();
+
+            DateStart.MaxDate = DateEnd.Value;
+            DateEnd.MinDate = DateStart.Value;
+
+            if (UseNameSearch.Checked && SearchName.Text != "")
+                Filter.Add(P => P.name.ToUpper().StartsWith(SearchName.Text.ToUpper()));
+
+            if (UseDateFilter.Checked)
+                Filter.Add(P => P.made_date >= DateStart.Value && P.made_date <= DateEnd.Value);
+
+            UpdateStoreList();
+        }
+
+        private void Remove_Click(object sender, EventArgs e)
+        {
+            Server.PostQuery(Constants.QueryURL, "query=DELETE FROM storage_product WHERE id = " + DeleteID.Value.ToString() + "&pas=Delishes228");
+            UpdateStoreList();
+
+            MessageBox.Show("Продукт успешно списан со склада!");
         }
     }
 }

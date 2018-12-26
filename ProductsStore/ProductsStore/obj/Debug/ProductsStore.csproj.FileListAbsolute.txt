@@ -19,3 +19,6 @@ C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\Prod
 C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.AddProductForm.resources
 C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.AddProductNameForm.resources
 C:\Server\data\htdocs\deliciousdishes\ProductsStore\ProductsStore\obj\Debug\ProductsStore.DropExpiredForm.resources
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\ProductsStore\ProductsStore\obj\Debug\ProductsStore.AddProductForm.resources
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\ProductsStore\ProductsStore\obj\Debug\ProductsStore.AddProductNameForm.resources
+C:\Users\olehk\Documents\Visual Studio 2012\Projects\ProductsStore\ProductsStore\obj\Debug\ProductsStore.DropExpiredForm.resources

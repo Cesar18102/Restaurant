@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.storeList = new System.Windows.Forms.DataGridView();
+            this.StoreID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StoreUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShelfStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FillStorePanel = new System.Windows.Forms.Panel();
             this.HeadLabel2 = new System.Windows.Forms.Label();
             this.ShelfStartDate = new System.Windows.Forms.DateTimePicker();
@@ -40,16 +46,23 @@
             this.CountLabel = new System.Windows.Forms.Label();
             this.StoreProductName = new System.Windows.Forms.ComboBox();
             this.StoreNameLabel = new System.Windows.Forms.Label();
-            this.StoreID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StoreUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShelfStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Remove = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DeleteID = new System.Windows.Forms.NumericUpDown();
+            this.SearchName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.DateStart = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DateEnd = new System.Windows.Forms.DateTimePicker();
+            this.UseNameSearch = new System.Windows.Forms.CheckBox();
+            this.UseDateFilter = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.storeList)).BeginInit();
             this.FillStorePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrimalPriceInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CountInput)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteID)).BeginInit();
             this.SuspendLayout();
             // 
             // storeList
@@ -69,6 +82,41 @@
             this.storeList.Size = new System.Drawing.Size(700, 467);
             this.storeList.TabIndex = 5;
             // 
+            // StoreID
+            // 
+            this.StoreID.HeaderText = "ID";
+            this.StoreID.Name = "StoreID";
+            this.StoreID.Width = 50;
+            // 
+            // StoreName
+            // 
+            this.StoreName.HeaderText = "Название";
+            this.StoreName.Name = "StoreName";
+            this.StoreName.Width = 150;
+            // 
+            // Amount
+            // 
+            this.Amount.HeaderText = "Количество";
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 120;
+            // 
+            // StoreUnit
+            // 
+            this.StoreUnit.HeaderText = "Ед. Измерения";
+            this.StoreUnit.Name = "StoreUnit";
+            this.StoreUnit.Width = 120;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена за ед.";
+            this.Price.Name = "Price";
+            // 
+            // ShelfStart
+            // 
+            this.ShelfStart.HeaderText = "Дата изготовления";
+            this.ShelfStart.Name = "ShelfStart";
+            this.ShelfStart.Width = 150;
+            // 
             // FillStorePanel
             // 
             this.FillStorePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -83,7 +131,7 @@
             this.FillStorePanel.Controls.Add(this.StoreProductName);
             this.FillStorePanel.Controls.Add(this.StoreNameLabel);
             this.FillStorePanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FillStorePanel.Location = new System.Drawing.Point(12, 485);
+            this.FillStorePanel.Location = new System.Drawing.Point(12, 663);
             this.FillStorePanel.Name = "FillStorePanel";
             this.FillStorePanel.Size = new System.Drawing.Size(698, 221);
             this.FillStorePanel.TabIndex = 4;
@@ -201,51 +249,142 @@
             this.StoreNameLabel.TabIndex = 9;
             this.StoreNameLabel.Text = "Название: ";
             // 
-            // StoreID
+            // panel1
             // 
-            this.StoreID.HeaderText = "ID";
-            this.StoreID.Name = "StoreID";
-            this.StoreID.Width = 50;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.UseDateFilter);
+            this.panel1.Controls.Add(this.UseNameSearch);
+            this.panel1.Controls.Add(this.DateEnd);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.DateStart);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.Remove);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.DeleteID);
+            this.panel1.Controls.Add(this.SearchName);
+            this.panel1.Location = new System.Drawing.Point(12, 485);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(700, 172);
+            this.panel1.TabIndex = 6;
             // 
-            // StoreName
+            // Remove
             // 
-            this.StoreName.HeaderText = "Название";
-            this.StoreName.Name = "StoreName";
-            this.StoreName.Width = 150;
+            this.Remove.Location = new System.Drawing.Point(9, 108);
+            this.Remove.Name = "Remove";
+            this.Remove.Size = new System.Drawing.Size(682, 44);
+            this.Remove.TabIndex = 15;
+            this.Remove.Text = "Удалить";
+            this.Remove.UseVisualStyleBackColor = true;
+            this.Remove.Click += new System.EventHandler(this.Remove_Click);
             // 
-            // Amount
+            // label4
             // 
-            this.Amount.HeaderText = "Количество";
-            this.Amount.Name = "Amount";
-            this.Amount.Width = 120;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(145, 24);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Удалить по ID: ";
             // 
-            // StoreUnit
+            // DeleteID
             // 
-            this.StoreUnit.HeaderText = "Ед. Измерения";
-            this.StoreUnit.Name = "StoreUnit";
-            this.StoreUnit.Width = 120;
+            this.DeleteID.Location = new System.Drawing.Point(225, 73);
+            this.DeleteID.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.DeleteID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.DeleteID.Name = "DeleteID";
+            this.DeleteID.Size = new System.Drawing.Size(466, 29);
+            this.DeleteID.TabIndex = 13;
+            this.DeleteID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // Price
+            // SearchName
             // 
-            this.Price.HeaderText = "Цена за ед.";
-            this.Price.Name = "Price";
+            this.SearchName.Location = new System.Drawing.Point(225, 3);
+            this.SearchName.Name = "SearchName";
+            this.SearchName.Size = new System.Drawing.Size(471, 29);
+            this.SearchName.TabIndex = 11;
+            this.SearchName.TextChanged += new System.EventHandler(this.Filter_Change);
             // 
-            // ShelfStart
+            // label1
             // 
-            this.ShelfStart.HeaderText = "Дата изготовления";
-            this.ShelfStart.Name = "ShelfStart";
-            this.ShelfStart.Width = 150;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(221, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 24);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "с";
+            // 
+            // DateStart
+            // 
+            this.DateStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateStart.Location = new System.Drawing.Point(247, 38);
+            this.DateStart.Name = "DateStart";
+            this.DateStart.Size = new System.Drawing.Size(143, 29);
+            this.DateStart.TabIndex = 17;
+            this.DateStart.ValueChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(396, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 24);
+            this.label5.TabIndex = 18;
+            this.label5.Text = " по ";
+            // 
+            // DateEnd
+            // 
+            this.DateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateEnd.Location = new System.Drawing.Point(444, 38);
+            this.DateEnd.Name = "DateEnd";
+            this.DateEnd.Size = new System.Drawing.Size(143, 29);
+            this.DateEnd.TabIndex = 19;
+            this.DateEnd.ValueChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // UseNameSearch
+            // 
+            this.UseNameSearch.AutoSize = true;
+            this.UseNameSearch.Location = new System.Drawing.Point(3, 5);
+            this.UseNameSearch.Name = "UseNameSearch";
+            this.UseNameSearch.Size = new System.Drawing.Size(213, 28);
+            this.UseNameSearch.TabIndex = 20;
+            this.UseNameSearch.Text = "Поиск по названию: ";
+            this.UseNameSearch.UseVisualStyleBackColor = true;
+            this.UseNameSearch.CheckedChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // UseDateFilter
+            // 
+            this.UseDateFilter.AutoSize = true;
+            this.UseDateFilter.Location = new System.Drawing.Point(3, 41);
+            this.UseDateFilter.Name = "UseDateFilter";
+            this.UseDateFilter.Size = new System.Drawing.Size(178, 28);
+            this.UseDateFilter.TabIndex = 21;
+            this.UseDateFilter.Text = "Фильтр по дате:";
+            this.UseDateFilter.UseVisualStyleBackColor = true;
+            this.UseDateFilter.CheckedChanged += new System.EventHandler(this.Filter_Change);
             // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 718);
+            this.ClientSize = new System.Drawing.Size(722, 894);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.storeList);
             this.Controls.Add(this.FillStorePanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "AddProductForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddProductForm";
@@ -255,6 +394,9 @@
             this.FillStorePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrimalPriceInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CountInput)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteID)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,5 +421,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StoreUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShelfStart;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button Remove;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown DeleteID;
+        private System.Windows.Forms.TextBox SearchName;
+        private System.Windows.Forms.CheckBox UseDateFilter;
+        private System.Windows.Forms.CheckBox UseNameSearch;
+        private System.Windows.Forms.DateTimePicker DateEnd;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker DateStart;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -17,6 +17,8 @@ namespace ProductsStore
             InitializeComponent();
         }
 
+        private List<Predicate<Product>> Filter = new List<Predicate<Product>>();
+
         private void AddProductNameForm_Load(object sender, EventArgs e)
         {
             UpdateProductList();
@@ -39,11 +41,19 @@ namespace ProductsStore
 
             List<Product> products = Server.Deserialize<Product>(response);
 
-
-
             if (products != null)
                 foreach (Product i in products)
                 {
+                    bool IsInRange = true;
+                    foreach(Predicate<Product> P in Filter)
+                        if (!P(i)) {
+
+                            IsInRange = false;
+                            break;
+                        }
+
+                    if (!IsInRange)
+                        continue;
 
                     productsList.Rows.Add();
                     productsList.Rows[productsList.RowCount - 1].Cells[0].Value = i.id;
@@ -51,6 +61,9 @@ namespace ProductsStore
                     productsList.Rows[productsList.RowCount - 1].Cells[2].Value = i.category;
                     productsList.Rows[productsList.RowCount - 1].Cells[3].Value = i.unit;
                     productsList.Rows[productsList.RowCount - 1].Cells[4].Value = i.shelf_life;
+
+                    DeleteID.Minimum = Math.Min(DeleteID.Minimum, i.id);
+                    DeleteID.Maximum = Math.Max(DeleteID.Maximum, i.id);
                 }
         }
 
@@ -67,6 +80,8 @@ namespace ProductsStore
             string response = Server.PostQuery(Constants.QueryURL, "query=INSERT INTO product VALUES(" + values + ")&pas=Delishes228");
 
             UpdateProductList();
+
+            MessageBox.Show("Наименование успешно добавлено!");
         }
 
         public void LoadCategories()
@@ -77,7 +92,10 @@ namespace ProductsStore
             List<Category> categories = Server.Deserialize<Category>(response);
 
             foreach (Category i in categories)
+            {
                 CategoryInput.Items.Add(i.name);
+                FilterCategory.Items.Add(i.name);
+            }
         }
 
         public void LoadUnits()
@@ -95,8 +113,32 @@ namespace ProductsStore
         {
             if (ProductNameInput.Text != "" && CategoryInput.SelectedIndex != -1 && UnitInput.SelectedIndex != -1 && ShelfLifeInput.Value > 0)
                 InsertProduct(ProductNameInput.Text, Convert.ToInt32(ShelfLifeInput.Value));
+        }
 
+        private void Remove_Click(object sender, EventArgs e)
+        {
+            Server.PostQuery(Constants.QueryURL, "query=DELETE FROM product WHERE id = " + DeleteID.Value.ToString() + "&pas=Delishes228");
+            UpdateProductList();
 
+            MessageBox.Show("Наименование успешно удалено!");
+        }
+
+        private void Filter_Change(object sender, EventArgs e)
+        {
+            Filter.Clear();
+
+            if (SearchName.Text != "")
+                Filter.Add(P => P.name.ToUpper().StartsWith(SearchName.Text.ToUpper()));
+
+            if (FilterCategory.SelectedIndex != -1)
+                Filter.Add(P => P.category == FilterCategory.Items[FilterCategory.SelectedIndex].ToString());
+
+            UpdateProductList();
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            FilterCategory.SelectedIndex = -1;
         }
     }
 }

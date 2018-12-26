@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.productsList = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shelfLife = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addProductPanel = new System.Windows.Forms.Panel();
             this.HeadLabel1 = new System.Windows.Forms.Label();
             this.SubmitProduct = new System.Windows.Forms.Button();
@@ -40,14 +45,20 @@
             this.CategoryLabel = new System.Windows.Forms.Label();
             this.ProductNameInput = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shelfLife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Remove = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DeleteID = new System.Windows.Forms.NumericUpDown();
+            this.FilterCategory = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SearchName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.productsList)).BeginInit();
             this.addProductPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShelfLifeInput)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteID)).BeginInit();
             this.SuspendLayout();
             // 
             // productsList
@@ -68,6 +79,36 @@
             this.productsList.Size = new System.Drawing.Size(598, 398);
             this.productsList.TabIndex = 4;
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Width = 50;
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "Название";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.Width = 150;
+            // 
+            // Category
+            // 
+            this.Category.HeaderText = "Категория";
+            this.Category.Name = "Category";
+            this.Category.Width = 120;
+            // 
+            // Unit
+            // 
+            this.Unit.HeaderText = "Ед. измерения";
+            this.Unit.Name = "Unit";
+            this.Unit.Width = 120;
+            // 
+            // shelfLife
+            // 
+            this.shelfLife.HeaderText = "Срок годности";
+            this.shelfLife.Name = "shelfLife";
+            this.shelfLife.Width = 150;
+            // 
             // addProductPanel
             // 
             this.addProductPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -82,7 +123,7 @@
             this.addProductPanel.Controls.Add(this.ProductNameInput);
             this.addProductPanel.Controls.Add(this.NameLabel);
             this.addProductPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addProductPanel.Location = new System.Drawing.Point(12, 416);
+            this.addProductPanel.Location = new System.Drawing.Point(12, 581);
             this.addProductPanel.Name = "addProductPanel";
             this.addProductPanel.Size = new System.Drawing.Size(598, 221);
             this.addProductPanel.TabIndex = 3;
@@ -189,46 +230,121 @@
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Название: ";
             // 
-            // ID
+            // panel1
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 50;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.Reset);
+            this.panel1.Controls.Add(this.Remove);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.DeleteID);
+            this.panel1.Controls.Add(this.FilterCategory);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.SearchName);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(12, 416);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(598, 159);
+            this.panel1.TabIndex = 5;
             // 
-            // ProductName
+            // Remove
             // 
-            this.ProductName.HeaderText = "Название";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.Width = 150;
+            this.Remove.Location = new System.Drawing.Point(9, 112);
+            this.Remove.Name = "Remove";
+            this.Remove.Size = new System.Drawing.Size(586, 44);
+            this.Remove.TabIndex = 15;
+            this.Remove.Text = "Удалить";
+            this.Remove.UseVisualStyleBackColor = true;
+            this.Remove.Click += new System.EventHandler(this.Remove_Click);
             // 
-            // Category
+            // label4
             // 
-            this.Category.HeaderText = "Категория";
-            this.Category.Name = "Category";
-            this.Category.Width = 120;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 79);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(145, 24);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Удалить по ID: ";
             // 
-            // Unit
+            // DeleteID
             // 
-            this.Unit.HeaderText = "Ед. измерения";
-            this.Unit.Name = "Unit";
-            this.Unit.Width = 120;
+            this.DeleteID.Location = new System.Drawing.Point(225, 77);
+            this.DeleteID.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.DeleteID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.DeleteID.Name = "DeleteID";
+            this.DeleteID.Size = new System.Drawing.Size(368, 29);
+            this.DeleteID.TabIndex = 13;
+            this.DeleteID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.DeleteID.ValueChanged += new System.EventHandler(this.Filter_Change);
             // 
-            // shelfLife
+            // FilterCategory
             // 
-            this.shelfLife.HeaderText = "Срок годности";
-            this.shelfLife.Name = "shelfLife";
-            this.shelfLife.Width = 150;
+            this.FilterCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FilterCategory.FormattingEnabled = true;
+            this.FilterCategory.Location = new System.Drawing.Point(225, 38);
+            this.FilterCategory.Name = "FilterCategory";
+            this.FilterCategory.Size = new System.Drawing.Size(247, 32);
+            this.FilterCategory.TabIndex = 10;
+            this.FilterCategory.SelectedIndexChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(214, 24);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Фильтр по категории: ";
+            // 
+            // SearchName
+            // 
+            this.SearchName.Location = new System.Drawing.Point(225, 3);
+            this.SearchName.Name = "SearchName";
+            this.SearchName.Size = new System.Drawing.Size(368, 29);
+            this.SearchName.TabIndex = 11;
+            this.SearchName.TextChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(194, 24);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Поиск по названию: ";
+            // 
+            // Reset
+            // 
+            this.Reset.Location = new System.Drawing.Point(478, 38);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(115, 32);
+            this.Reset.TabIndex = 16;
+            this.Reset.Text = "Сброс";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
             // AddProductNameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 649);
+            this.ClientSize = new System.Drawing.Size(623, 814);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.productsList);
             this.Controls.Add(this.addProductPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "AddProductNameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddProductNameForm";
@@ -237,6 +353,9 @@
             this.addProductPanel.ResumeLayout(false);
             this.addProductPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShelfLifeInput)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteID)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -260,5 +379,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn shelfLife;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox SearchName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button Remove;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown DeleteID;
+        private System.Windows.Forms.ComboBox FilterCategory;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button Reset;
     }
 }
