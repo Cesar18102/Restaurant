@@ -57,6 +57,7 @@
             this.ReadyCB = new System.Windows.Forms.CheckBox();
             this.OfferIDVAL = new System.Windows.Forms.NumericUpDown();
             this.MealIDVAL = new System.Windows.Forms.NumericUpDown();
+            this.Reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.offeredmeals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OfferIDVAL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MealIDVAL)).BeginInit();
@@ -68,6 +69,7 @@
             this.offeredmeals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.offeredmeals.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.offeredmeals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.offeredmeals.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -98,56 +100,48 @@
             this.ID.HeaderText = "ID заказа";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
-            this.ID.Width = 70;
             // 
             // SubOfferID
             // 
             this.SubOfferID.HeaderText = "ID позиции";
             this.SubOfferID.Name = "SubOfferID";
             this.SubOfferID.ReadOnly = true;
-            this.SubOfferID.Width = 70;
             // 
             // MealId
             // 
             this.MealId.HeaderText = "ID блюда";
             this.MealId.Name = "MealId";
             this.MealId.ReadOnly = true;
-            this.MealId.Width = 70;
             // 
             // MealName
             // 
             this.MealName.HeaderText = "Блюдо";
             this.MealName.Name = "MealName";
             this.MealName.ReadOnly = true;
-            this.MealName.Width = 150;
             // 
             // MealCount
             // 
             this.MealCount.HeaderText = "Кол-во";
             this.MealCount.Name = "MealCount";
             this.MealCount.ReadOnly = true;
-            this.MealCount.Width = 70;
             // 
             // MealWeight
             // 
             this.MealWeight.HeaderText = "Вес блюда";
             this.MealWeight.Name = "MealWeight";
             this.MealWeight.ReadOnly = true;
-            this.MealWeight.Width = 70;
             // 
             // Start
             // 
             this.Start.HeaderText = "Время заказа";
             this.Start.Name = "Start";
             this.Start.ReadOnly = true;
-            this.Start.Width = 200;
             // 
             // Comment
             // 
             this.Comment.HeaderText = "Комментарий";
             this.Comment.Name = "Comment";
             this.Comment.ReadOnly = true;
-            this.Comment.Width = 200;
             // 
             // TimeSpent
             // 
@@ -161,7 +155,6 @@
             this.Reciepe.ReadOnly = true;
             this.Reciepe.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Reciepe.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Reciepe.Width = 150;
             // 
             // CookStart
             // 
@@ -169,7 +162,6 @@
             this.CookStart.Name = "CookStart";
             this.CookStart.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.CookStart.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.CookStart.Width = 120;
             // 
             // State
             // 
@@ -177,7 +169,6 @@
             this.State.Name = "State";
             this.State.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.State.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.State.Width = 120;
             // 
             // OfferIdHidden
             // 
@@ -316,11 +307,23 @@
             this.MealIDVAL.TabIndex = 11;
             this.MealIDVAL.ValueChanged += new System.EventHandler(this.Filter_CheckedChanged);
             // 
+            // Reset
+            // 
+            this.Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Reset.Location = new System.Drawing.Point(919, 785);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(252, 68);
+            this.Reset.TabIndex = 12;
+            this.Reset.Text = "Опустить все флаги";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
             // Cooker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1423, 881);
+            this.Controls.Add(this.Reset);
             this.Controls.Add(this.MealIDVAL);
             this.Controls.Add(this.OfferIDVAL);
             this.Controls.Add(this.ReadyCB);
@@ -377,6 +380,7 @@
         private System.Windows.Forms.CheckBox ReadyCB;
         private System.Windows.Forms.NumericUpDown OfferIDVAL;
         private System.Windows.Forms.NumericUpDown MealIDVAL;
+        private System.Windows.Forms.Button Reset;
     }
 }
 

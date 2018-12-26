@@ -46,6 +46,7 @@
             this.ProductNameInput = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Reset = new System.Windows.Forms.Button();
             this.Remove = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteID = new System.Windows.Forms.NumericUpDown();
@@ -53,7 +54,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.SearchName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.Reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.productsList)).BeginInit();
             this.addProductPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShelfLifeInput)).BeginInit();
@@ -66,6 +66,7 @@
             this.productsList.AllowUserToAddRows = false;
             this.productsList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.productsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.productsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -83,31 +84,26 @@
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
-            this.ID.Width = 50;
             // 
             // ProductName
             // 
             this.ProductName.HeaderText = "Название";
             this.ProductName.Name = "ProductName";
-            this.ProductName.Width = 150;
             // 
             // Category
             // 
             this.Category.HeaderText = "Категория";
             this.Category.Name = "Category";
-            this.Category.Width = 120;
             // 
             // Unit
             // 
             this.Unit.HeaderText = "Ед. измерения";
             this.Unit.Name = "Unit";
-            this.Unit.Width = 120;
             // 
             // shelfLife
             // 
             this.shelfLife.HeaderText = "Срок годности";
             this.shelfLife.Name = "shelfLife";
-            this.shelfLife.Width = 150;
             // 
             // addProductPanel
             // 
@@ -246,6 +242,16 @@
             this.panel1.Size = new System.Drawing.Size(598, 159);
             this.panel1.TabIndex = 5;
             // 
+            // Reset
+            // 
+            this.Reset.Location = new System.Drawing.Point(478, 38);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(115, 32);
+            this.Reset.TabIndex = 16;
+            this.Reset.Text = "Сброс";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
             // Remove
             // 
             this.Remove.Location = new System.Drawing.Point(9, 112);
@@ -323,16 +329,6 @@
             this.label2.Size = new System.Drawing.Size(194, 24);
             this.label2.TabIndex = 10;
             this.label2.Text = "Поиск по названию: ";
-            // 
-            // Reset
-            // 
-            this.Reset.Location = new System.Drawing.Point(478, 38);
-            this.Reset.Name = "Reset";
-            this.Reset.Size = new System.Drawing.Size(115, 32);
-            this.Reset.TabIndex = 16;
-            this.Reset.Text = "Сброс";
-            this.Reset.UseVisualStyleBackColor = true;
-            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
             // AddProductNameForm
             // 

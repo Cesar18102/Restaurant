@@ -69,11 +69,11 @@ namespace CookTable
                 }
             PB.Value = 100;
 
-            OfferIDVAL.Minimum = OfferIDS.Min();
-            OfferIDVAL.Maximum = OfferIDS.Max();
+            OfferIDVAL.Minimum = OfferIDS.Count == 0 ? 0 : OfferIDS.Min();
+            OfferIDVAL.Maximum = OfferIDS.Count == 0 ? 0 : OfferIDS.Max();
 
-            MealIDVAL.Minimum = MealIDS.Min();
-            MealIDVAL.Maximum = MealIDS.Max();
+            MealIDVAL.Minimum = MealIDS.Count == 0 ? 0 : MealIDS.Min();
+            MealIDVAL.Maximum = MealIDS.Count == 0 ? 0 : MealIDS.Max();
         }
 
         public List<Offer> GetOffers(ProgressBar PB) {
@@ -215,6 +215,15 @@ namespace CookTable
                 filter.Add(R => Convert.ToBoolean(R.Cells["State"].Value));
 
             UpdateOffers(UpdateProgress);
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            OfferIDCB.Checked = false;
+            MealIDCB.Checked = false;
+
+            AcceptedCB.Checked = false;
+            ReadyCB.Checked = false;
         }
     }
 }

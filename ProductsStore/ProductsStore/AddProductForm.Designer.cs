@@ -47,16 +47,16 @@
             this.StoreProductName = new System.Windows.Forms.ComboBox();
             this.StoreNameLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.UseDateFilter = new System.Windows.Forms.CheckBox();
+            this.UseNameSearch = new System.Windows.Forms.CheckBox();
+            this.DateEnd = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DateStart = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.Remove = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteID = new System.Windows.Forms.NumericUpDown();
             this.SearchName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.DateStart = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.DateEnd = new System.Windows.Forms.DateTimePicker();
-            this.UseNameSearch = new System.Windows.Forms.CheckBox();
-            this.UseDateFilter = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.storeList)).BeginInit();
             this.FillStorePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrimalPriceInput)).BeginInit();
@@ -68,6 +68,7 @@
             // storeList
             // 
             this.storeList.AllowUserToAddRows = false;
+            this.storeList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.storeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.storeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StoreID,
@@ -86,25 +87,21 @@
             // 
             this.StoreID.HeaderText = "ID";
             this.StoreID.Name = "StoreID";
-            this.StoreID.Width = 50;
             // 
             // StoreName
             // 
             this.StoreName.HeaderText = "Название";
             this.StoreName.Name = "StoreName";
-            this.StoreName.Width = 150;
             // 
             // Amount
             // 
             this.Amount.HeaderText = "Количество";
             this.Amount.Name = "Amount";
-            this.Amount.Width = 120;
             // 
             // StoreUnit
             // 
             this.StoreUnit.HeaderText = "Ед. Измерения";
             this.StoreUnit.Name = "StoreUnit";
-            this.StoreUnit.Width = 120;
             // 
             // Price
             // 
@@ -115,7 +112,6 @@
             // 
             this.ShelfStart.HeaderText = "Дата изготовления";
             this.ShelfStart.Name = "ShelfStart";
-            this.ShelfStart.Width = 150;
             // 
             // FillStorePanel
             // 
@@ -267,6 +263,64 @@
             this.panel1.Size = new System.Drawing.Size(700, 172);
             this.panel1.TabIndex = 6;
             // 
+            // UseDateFilter
+            // 
+            this.UseDateFilter.AutoSize = true;
+            this.UseDateFilter.Location = new System.Drawing.Point(3, 41);
+            this.UseDateFilter.Name = "UseDateFilter";
+            this.UseDateFilter.Size = new System.Drawing.Size(178, 28);
+            this.UseDateFilter.TabIndex = 21;
+            this.UseDateFilter.Text = "Фильтр по дате:";
+            this.UseDateFilter.UseVisualStyleBackColor = true;
+            this.UseDateFilter.CheckedChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // UseNameSearch
+            // 
+            this.UseNameSearch.AutoSize = true;
+            this.UseNameSearch.Location = new System.Drawing.Point(3, 5);
+            this.UseNameSearch.Name = "UseNameSearch";
+            this.UseNameSearch.Size = new System.Drawing.Size(213, 28);
+            this.UseNameSearch.TabIndex = 20;
+            this.UseNameSearch.Text = "Поиск по названию: ";
+            this.UseNameSearch.UseVisualStyleBackColor = true;
+            this.UseNameSearch.CheckedChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // DateEnd
+            // 
+            this.DateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateEnd.Location = new System.Drawing.Point(444, 38);
+            this.DateEnd.Name = "DateEnd";
+            this.DateEnd.Size = new System.Drawing.Size(143, 29);
+            this.DateEnd.TabIndex = 19;
+            this.DateEnd.ValueChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(396, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 24);
+            this.label5.TabIndex = 18;
+            this.label5.Text = " по ";
+            // 
+            // DateStart
+            // 
+            this.DateStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateStart.Location = new System.Drawing.Point(247, 38);
+            this.DateStart.Name = "DateStart";
+            this.DateStart.Size = new System.Drawing.Size(143, 29);
+            this.DateStart.TabIndex = 17;
+            this.DateStart.ValueChanged += new System.EventHandler(this.Filter_Change);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(221, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 24);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "с";
+            // 
             // Remove
             // 
             this.Remove.Location = new System.Drawing.Point(9, 108);
@@ -315,64 +369,6 @@
             this.SearchName.Size = new System.Drawing.Size(471, 29);
             this.SearchName.TabIndex = 11;
             this.SearchName.TextChanged += new System.EventHandler(this.Filter_Change);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(221, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 24);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "с";
-            // 
-            // DateStart
-            // 
-            this.DateStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateStart.Location = new System.Drawing.Point(247, 38);
-            this.DateStart.Name = "DateStart";
-            this.DateStart.Size = new System.Drawing.Size(143, 29);
-            this.DateStart.TabIndex = 17;
-            this.DateStart.ValueChanged += new System.EventHandler(this.Filter_Change);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(396, 42);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 24);
-            this.label5.TabIndex = 18;
-            this.label5.Text = " по ";
-            // 
-            // DateEnd
-            // 
-            this.DateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateEnd.Location = new System.Drawing.Point(444, 38);
-            this.DateEnd.Name = "DateEnd";
-            this.DateEnd.Size = new System.Drawing.Size(143, 29);
-            this.DateEnd.TabIndex = 19;
-            this.DateEnd.ValueChanged += new System.EventHandler(this.Filter_Change);
-            // 
-            // UseNameSearch
-            // 
-            this.UseNameSearch.AutoSize = true;
-            this.UseNameSearch.Location = new System.Drawing.Point(3, 5);
-            this.UseNameSearch.Name = "UseNameSearch";
-            this.UseNameSearch.Size = new System.Drawing.Size(213, 28);
-            this.UseNameSearch.TabIndex = 20;
-            this.UseNameSearch.Text = "Поиск по названию: ";
-            this.UseNameSearch.UseVisualStyleBackColor = true;
-            this.UseNameSearch.CheckedChanged += new System.EventHandler(this.Filter_Change);
-            // 
-            // UseDateFilter
-            // 
-            this.UseDateFilter.AutoSize = true;
-            this.UseDateFilter.Location = new System.Drawing.Point(3, 41);
-            this.UseDateFilter.Name = "UseDateFilter";
-            this.UseDateFilter.Size = new System.Drawing.Size(178, 28);
-            this.UseDateFilter.TabIndex = 21;
-            this.UseDateFilter.Text = "Фильтр по дате:";
-            this.UseDateFilter.UseVisualStyleBackColor = true;
-            this.UseDateFilter.CheckedChanged += new System.EventHandler(this.Filter_Change);
             // 
             // AddProductForm
             // 
