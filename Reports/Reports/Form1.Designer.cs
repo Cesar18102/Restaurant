@@ -31,6 +31,8 @@
             this.MealReport = new System.Windows.Forms.Button();
             this.ProductReport = new System.Windows.Forms.Button();
             this.DriverReport = new System.Windows.Forms.Button();
+            this.ReportProgress = new System.Windows.Forms.ProgressBar();
+            this.SoldMealsStats = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MealReport
@@ -63,11 +65,30 @@
             this.DriverReport.UseVisualStyleBackColor = true;
             this.DriverReport.Click += new System.EventHandler(this.DriverReport_Click);
             // 
+            // ReportProgress
+            // 
+            this.ReportProgress.Location = new System.Drawing.Point(13, 201);
+            this.ReportProgress.Name = "ReportProgress";
+            this.ReportProgress.Size = new System.Drawing.Size(409, 37);
+            this.ReportProgress.TabIndex = 3;
+            // 
+            // SoldMealsStats
+            // 
+            this.SoldMealsStats.Location = new System.Drawing.Point(13, 154);
+            this.SoldMealsStats.Name = "SoldMealsStats";
+            this.SoldMealsStats.Size = new System.Drawing.Size(409, 41);
+            this.SoldMealsStats.TabIndex = 4;
+            this.SoldMealsStats.Text = "Статистика проданных блюд";
+            this.SoldMealsStats.UseVisualStyleBackColor = true;
+            this.SoldMealsStats.Click += new System.EventHandler(this.SoldMealsStats_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 163);
+            this.ClientSize = new System.Drawing.Size(443, 250);
+            this.Controls.Add(this.SoldMealsStats);
+            this.Controls.Add(this.ReportProgress);
             this.Controls.Add(this.DriverReport);
             this.Controls.Add(this.ProductReport);
             this.Controls.Add(this.MealReport);
@@ -85,6 +106,8 @@
         private System.Windows.Forms.Button MealReport;
         private System.Windows.Forms.Button ProductReport;
         private System.Windows.Forms.Button DriverReport;
+        private System.Windows.Forms.ProgressBar ReportProgress;
+        private System.Windows.Forms.Button SoldMealsStats;
     }
 }
 
